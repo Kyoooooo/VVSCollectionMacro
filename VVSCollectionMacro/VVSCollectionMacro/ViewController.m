@@ -24,28 +24,6 @@
     [self setupSquare];
 }
 
-- (void)setupDemo2 {
-    // 传入父视图、列数、宽度、高度、间距
-    UIView *backView = [[UIView alloc] initWithFrame:CGRectMake(0.f, 0.f, VVS_SCREEN_WIDTH, VVS_SCREEN_HEIGHT)];
-    [self.view addSubview:backView];
-    
-    int colunm = 3;
-    int margin = 5;
-    int width = (VVS_SCREEN_WIDTH - (colunm - 1) * margin) / colunm;
-    int height = width;
-    
-    for (int i = 0; i < 9; i++) {
-        UIButton *button = [[UIButton alloc] init];
-        button.frame = CGRectMake(SUBVIEW_X_WITH_PARAMETERS(backView, width, colunm, margin), SUBVIEW_Y_WITH_PARAMETERS(backView, height, colunm, margin), width, height);
-        [backView addSubview:button];
-        CGFloat red = rand() % 255 / 255.f;
-        CGFloat green = rand() % 255 / 255.f;
-        CGFloat blue = rand() % 255 / 255.f;
-        button.backgroundColor = [UIColor colorWithRed:red green:green blue:blue alpha:1.f];
-        [button addTarget:self action:NSSelectorFromString(self.actions[i]) forControlEvents:UIControlEventTouchUpInside];
-    }
-}
-
 - (void)setupSquare {
     // 小格子的公共父视图
     UIView *backView = [[UIView alloc] initWithFrame:CGRectMake(0.f, 0.f, VVS_SCREEN_WIDTH, VVS_SCREEN_HEIGHT)];
@@ -62,7 +40,7 @@
     for (int i = 0; i < 9; i++) {
         UIButton *button = [[UIButton alloc] init];
         // 使用宏计算frame
-        button.frame = CGRectMake(SUBVIEW_X_WITH_EDGE_PARAMETERS(backView, width, colunm, margin), SUBVIEW_Y_WITH_EDGE_PARAMETERS(backView, height, colunm, margin), width, height);
+        button.frame = CGRectMake(CELL_X_WITH_EDGE_PARAMETERS(backView, width, colunm, margin), CELL_Y_WITH_EDGE_PARAMETERS(backView, height, colunm, margin), width, height);
         // 创建好后就把小格子添加到父视图
         [backView addSubview:button];
         
